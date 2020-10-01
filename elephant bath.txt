@@ -1,0 +1,16 @@
+Problem Statement : Bob has n elephants. He wants to give them a bath. But from the n elephants some elements like bathing and some don't. You are given an array a of n elements containing 0 and 1, where 0 shows ith elephant doesn't like bath and 1 shows ith elephant likes bathing. You take all elephants to the river, ones who like bathing bathes themselves while you have to bathe the others. You can bath maximum k elephants. Find the total number of elephants which are bathed.
+
+Input : two lines.
+	first line contains two spaced integers n and k ( n is positive and less than 1000000 )
+	second line contains n elements of array a. ( 0 and 1 )
+
+output : single line containing total number of bathed elephants.
+
+
+Solution : We iterate through the array and count the number of elements equal to 1 to be c.
+ Answer is equal to c + minimum(n-c,k).
+
+Time Complexity : O (n);
+
+
+
