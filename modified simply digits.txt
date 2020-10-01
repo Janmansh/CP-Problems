@@ -1,0 +1,76 @@
+Modified SIMPLY Digits(Prime).
+
+Problem Statement : Given an integer N(0<N<power(10,6)) and take an empty string s. 
+                    Append prime numbers from 1 to N without leading zeros to s. 
+Calculate the length of string s.
+
+example: N=5, then s=235.
+
+length of s=3.
+
+Constraints : 0<N<power(10,6);
+
+Expected Solution and time complexity : We can find the prime numbers from 1 to N in 
+                                       time complexity O(N(log(log(N))))  (SieveOfEratosthenes). 
+                                      And we can find there digits in O(1) using log10 function.
+
+
+
+
+Solution code: 
+
+
+#include <bits/stdc++.h> 
+using namespace std; 
+#define ll long long
+#define int long long
+#define ull unsigned long long
+#define pb push_back
+#define mod 1000000007
+
+void SieveOfEratosthenes(int n){ 
+	// Create a boolean array "prime[0..n]" and initialize 
+	// all entries it as true. A value in prime[i] will 
+	// finally be false if i is Not a prime, else true. 
+	vector<bool>prime(n+1,true);
+
+	for (int p=2; p*p<=n; p++) 
+	{ 
+		// If prime[p] is not changed, then it is a prime 
+		if (prime[p] == true) 
+		{ 
+			// Update all multiples of p greater than or 
+			// equal to the square of it 
+			// numbers which are multiple of p and are 
+			// less than p^2 are already been marked. 
+			for (int i=p*p; i<=n; i += p) 
+				prime[i] = false; 
+		} 
+	} 
+
+	// count digits all prime numbers 
+	int total_num_of_digits=0;
+	
+	for (int i = 2; i <= n; i++) { 
+		if (prime[i]){
+      ll x=log10(i);
+      x++;
+      total_num_of_digits+=x;
+      // while(x){
+      //   total_num_of_digits++;
+      //   x/=10;
+      // }
+    } 
+	}
+	
+  cout<<total_num_of_digits<<"\n";
+} 
+
+// Driver Program to test above function 
+signed main(){
+  ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL); 
+	int n;
+  cin>>n;
+	SieveOfEratosthenes(n); 
+	return 0; 
+} 
