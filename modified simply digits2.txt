@@ -1,0 +1,90 @@
+modified SIMPLY Digits(mod 4).
+
+Problem Statement : Given an integer N(0<N<power(10,18)) and take an empty string s. 
+                    Append numbers from 1 to N which give remainder 1 when divide by 4, i.e 
+                    i%4=1( 0 < i <= N) without leading zeros to s. Calculate the length of string s. 
+                    As the length of string will be very high calculate length modulo 1000000007.
+
+ Example: N=5, then s=15
+
+ Length of s=2.
+
+Constraints : 0<N<power(10,18);
+
+Expected Solution : When N is single digit we can easily know the answer. Now among all two digit
+                    numbers there are floor(90/4) two digit numbers which give remainder 1 when 
+divided by 4. Similarly among all three digits there are (900/4) numbers which gives remainder 1.
+ So we can make a formula to solve this. Suppose x is the number of digits in N and x>1 then, 
+we can take x==2 as a special case, for others answer will be 
+3(one digits one) + ({sigma(2 to x-1)9*i*10^(i-1)})+((n-10^(x-1))/4)*x. We add x to this if (n-10^(x-1))%4!=0.
+if x=1 we can just divide by 4 and if n%4!=0 add 1.
+if x=2 we can find by brute force or we know that there are 3 one digit ones and for remaining we
+do add ((n-10)/4)*2 and if (n-10)%4==3 we add 2. so answer becomes 3+((n-10)/4 + 1)*2 (if (n-10)%4=3).
+
+
+Time complexity : O(log(N)).
+
+
+
+Solution code : 
+
+
+#include <bits/stdc++.h> 
+using namespace std; 
+#define ll long long
+#define int long long
+#define ull unsigned long long
+#define pb push_back
+#define mod 1000000007
+
+ll power(ll x,ll y){
+  if(y==0) return 1;
+  ll temp = power( x,y/2 );
+  if( y%2 ){
+    return (((temp*temp))*x);
+  }
+  return (temp*temp);
+}
+
+void solve(int n){
+  ll x;
+  x=log10(n)+1;
+  ll ans=0;
+  if(x==1){
+    cout<< n/4 + ((n%4==0)?(0):(1)) ;return;
+  }
+  if(x==2){
+    ans+=3;
+    n-=10;
+    ans+=((n/4)*2);
+    if(n%4==3)ans+=2;
+    cout<<ans<<"\n";
+    return;
+  }
+  ans+=3;
+  for(int i=x-1;i>1;i--){\
+    ll y=(9*power(10,i-1)/4);
+    y%=mod;
+    y*=i;
+    y%=mod;
+    ans+=y;
+    ans%=mod;
+  }
+  n-=(power(10,x-1));
+  ans+=((n/4)*x);
+  ans%=mod;
+  if(n%4!=0)ans+=x;
+  ans%=mod;
+  cout<<ans<<"\n";
+  return;
+} 
+
+// Driver Program to test above function 
+signed main(){
+  ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL); 
+	int n;
+  cin>>n;
+	solve(n); 
+	return 0; 
+} 
+
