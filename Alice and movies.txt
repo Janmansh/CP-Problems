@@ -1,0 +1,20 @@
+Problem Statement : Alice has n movie suggestions from her friend bob. You are given an array a of
+ N elements. The elements of array a[i] depicts the rating of ith movie. Each movie is 2 hours in
+ duration. Now Alice watches only those movie whose rating is not less than k. Find the total 
+ number of seconds Alice watches movies if 1 hour equals 50 minutes and 1 minute equals 70 seconds.
+
+Input : two lines.
+	first line contains two spaced integers n and k ( n is positive and less than 1000000 )
+	second line contains n elements of array a.
+
+output : single line containing total number of seconds.
+
+
+Solution : We iterate through the array and count the number of elements greater than equal to k.
+ Then we multiply this number with 2*50*70 , i.e 7000 to get the answer.
+
+
+Time Complexity : O (n);
+
+
+
