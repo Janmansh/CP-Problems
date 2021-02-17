@@ -1,0 +1,29 @@
+Problem Statement: Given a 9x9 grid consisting of only zeros and ones. The number of ones in the grid will not be greater than 8. There should be exactly nine '1's in the grid.
+
+You have to determine if you can find the exact positions where missing 1's
+can replace '0's without any ambiguity (i.e. there is only one possible way to arrange the '1's) following the rules of solving a Sudoku. (Every horizontal and vertical line should contain exactly one '1'. Also, nine 3x3 boxes as shown in link below should contain exactly one '1'.)
+
+It is guaranteed that the 1's present the grid will follow the rules of Sudoku.
+
+If you don't know what a Sudoku is, you can read about it https://en.m.wikipedia.org/wiki/Sudoku.
+
+Constraint: Number of 1's in the grid will not exceed 8.
+
+Input: 9 binary strings
+
+Output: If it is impossible to determine the remaining 1's, just print "NO".
+If it is possible to determine the remaining 1's, print "YES" in the first line and each next line will contain the position of remaining ones.
+eg: i) NO
+ii) YES
+2 4
+3 3
+
+Expected Difficulty level: Easy-Medium
+
+Expected Solution: It is easy to notice that we can determine the position of remaining 1's if and only if there are 8 1's already present in the grid. Eg: if seven '1's are given there will always be two possible ways to arrange the '1's.
+
+So, if number of 1's in the grid are less than 8, simply print "NO".
+
+To determine the position of last 1, we will find the row number and column number in the grid which does not contain 1 by iterating over the grid 2 times.
+
+Time Compexity: O(81+81) = O(100).

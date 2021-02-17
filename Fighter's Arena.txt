@@ -1,0 +1,49 @@
+Problem Name : Fighter's Arena
+
+Problem Statement : There's a nxn grid in which soldiers are stationed at various locations. The visibilty of a soldier is restricted to only the row and column in which he is positioned. If any soldier is in visible range of any other soldier, there will be clash between them. You want the arrangement of soldiers such that no soldier will die. There will be some number of soldiers already positioned, you have tell the maximum number of extra soldiers which you can place in the arena and their position such that there are no clashes. It is guaranteed that initially there are no clashes.
+
+Input : One integer n. Next n binary strings of length n consisting of only 1's and 0's. If the character at a particular location is 1, that means there's a soldier already present at that location.
+
+Output : The maximum number of sodiers (k) you can place in the first line. Next k lines, the exact locations of the soldiers to be placed.
+
+Constraints : 1 < = n < = 1000
+
+Example test case 1) :
+INPUT:
+9
+100000000
+010000000
+001000000
+000100000
+000010000
+000001000
+000000100
+000000000
+000000000
+Output :
+2
+8 8
+9 9
+
+OR
+
+2
+8 9
+9 8
+
+Example test case 2) :
+INPUT:
+9
+000000100
+100000000
+001000000
+000100000
+000010000
+000001000
+010000000
+000000010
+000000001
+OUTPUT : 
+0
+
+Editorial : Here we will maintain a visited array of rows and column and initialize it to zero. Now we iterate through the given grid and mark the row and column as visited which have a one in them. Suppose there are k ones in the grid initially, so we can only place n-k more soldiers such that there are no clashes else in one row or column there will be a clash. Hence we should be left with n-k rows and n-k columns and we keep n-k soldiers in one column and row and mark both as visited. Hence we can print any of the feasible solutions.

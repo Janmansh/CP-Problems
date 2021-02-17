@@ -1,0 +1,20 @@
+SIMPLY Digits.
+
+Problem Statement : Given an integer N(0<N<power(10,18)) and take an empty string s. 
+           Append numbers from 1 to N without leading zeros to s. Calculate the length of string s.
+           As the length of string will be very high calculate length modulo 1000000007
+
+example: N=5, then s=12345.
+
+length of s=5.
+
+Constraints : 0<N<power(10,18);
+
+Expected Solution and time complexity : For single digits we know that length of s is N. 
+For numbers with digit greater than 1, example: N=15, s=123456789101112131415. length of s=21. 
+Similarly, if x is the number of digits in N then length of string 
+s = sigma (i = (1 to x-1)){(9*i*( power(10,i-1) ) }+((N- sigma(i=(1 to x-1){(9 (power(10,i-1))})*x)
+
+
+To calculate number of digits we have time complexity log(N) to base 10.
+ And then for sigma we go log(N) times in loop. So 2 * log(N), which is O( log(N) ).
