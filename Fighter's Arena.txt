@@ -4,7 +4,7 @@ Problem Statement : There's a nxn grid in which soldiers are stationed at variou
 
 Input : One integer n. Next n binary strings of length n consisting of only 1's and 0's. If the character at a particular location is 1, that means there's a soldier already present at that location.
 
-Output : The maximum number of sodiers (k) you can place in the first line. Next k lines, the exact locations of the soldiers to be placed.
+Output : The maximum number of soldiers (k) you can place in the first line. Next k lines, the exact locations of the soldiers to be placed.
 
 Constraints : 1 < = n < = 1000
 
