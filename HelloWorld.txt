@@ -1,2 +1,7 @@
-1st line
-2nd line
+Problem Statement: To print hello world n times where n is given by the user.
+
+Input: n=3
+Output: 
+Hello World
+Hello World
+Hello World
