@@ -1,0 +1,26 @@
+Problem Statement:
+Guddu and Golu were tired of thinking how to conquer mirzapur so they thought of playing  a simple game to clear their mind.
+It is a board game that they designed consisting of linear arrangement of n+1 boxes numbered 0 to n left to right.
+      There is one token(playing piece) that is initially placed at n th box.(rightmost)
+      Each player alternatively take turns in making their move of the common token.
+In each turn, a player can move 1,3 or k boxes to the left. The token must not leave the board. The player who cant make a move loses. Can you predict who will win if Golu makes the first move? (Both Golu and Guddu are extremely intelligent and play the optimum move).
+
+Input format:
+First line contains t testcases.
+Next t lines contain two integers n and k.
+
+Constraints:
+1<=t<=100
+0<=n<=10^9 , 3<k <=10^9
+
+Output:
+Print “Guddu” if he wins or “Golu”(without quotes) in new lines
+
+Sample:
+3
+0 4
+3 4
+4 5
+=>Guddu
+  Golu
+  Guddu
