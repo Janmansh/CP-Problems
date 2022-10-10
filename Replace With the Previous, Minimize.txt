@@ -1,0 +1,145 @@
+You are given a string s of lowercase Latin letters.
+
+The following operation can be used:
+
+select one character (from 'a' to 'z') that occurs at least once in the string. And replace all such characters in the string with the previous one in alphabetical order on the loop. For example, replace all 'c' with 'b' or replace all 'a' with 'z'.
+And you are given the integer k — the maximum number of operations that can be performed. Find the minimum lexicographically possible string that can be obtained by performing no more than k operations.
+
+The string a=a1a2…an is lexicographically smaller than the string b=b1b2…bn if there exists an index k (1≤k≤n) such that a1=b1, a2=b2, ..., ak−1=bk−1, but ak<bk.
+
+Input
+The first line contains a single integer t (1≤t≤104) —the number of test cases in the test.
+
+This is followed by descriptions of the test cases.
+
+The first line of each test case contains two integers n and k (1≤n≤2⋅105, 1≤k≤109) — the size of the string s and the maximum number of operations that can be performed on the string s.
+
+The second line of each test case contains a string s of length n consisting of lowercase Latin letters.
+
+It is guaranteed that the sum n over all test cases does not exceed 2⋅105.
+
+Output
+For each test case, output the lexicographically minimal string that can be obtained from the string s by performing no more than k operations.
+
+input
+4
+3 2
+cba
+4 5
+fgde
+7 5
+gndcafb
+4 19
+ekyv
+
+Output
+aaa
+agaa
+bnbbabb
+aapp
+
+
+Solution : 
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define P 1000000007
+#define inf 1e18
+#define ld long double
+#define N 400005
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    ll t1, i, j;
+    cin >> t1;
+    while (t1--)
+    {
+        ll n, k;
+        cin >> n >> k;
+        string s;
+        cin >> s;
+        vector<ll> num(n);
+        map<ll, ll> m1;
+        ll Max = 0;
+        for (int i = 0; i < n; i++)
+        {
+            num[i] = s[i] - 'a';
+            Max = max(Max, num[i]);
+        }
+        if (k == 0)
+        {
+            cout << s << "\n";
+        }
+        else if (Max <= k)
+        {
+            for (int i = 0; i < n; i++)
+                cout << "a";
+            cout << "\n";
+        }
+        else if (num[0] >= k)
+        {
+            ll pin = num[0] - k;
+            char c = (char)('a' + pin);
+            for (int i = 0; i < n; i++)
+            {
+                if (num[i] > num[0])
+                {
+                    cout << s[i];
+                }
+                else if (num[i] < pin)
+                {
+                    cout << s[i];
+                }
+                else
+                {
+                    cout << c;
+                }
+            }
+            cout << "\n";
+        }
+        else
+        {
+            // cout<<"in here\n";
+            ll last = num[0];
+            for (int i = 1; i < n; i++)
+            {
+                if (num[i] <= k)
+                {   
+                    last = max(last,num[i]);
+                    num[i] = 0;
+                    // cout<<"last : "<<last<<"\n";
+                }
+                else
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (num[j] <= last)
+                        {
+                            num[j] = 0;
+                        }
+                    }
+                    k = k - last;
+                    ll old = num[i];
+                    ll New = num[i] - k;
+                    //cout<<" old : "<<old<<" \nNew : "<<New<<"\n";
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (num[j] <= old && num[j] >= New)
+                            num[j] = New;
+                    }
+
+                     break;
+                }
+                // cout << "Last is " << last << "\n";
+            }
+            for (int i = 0; i < n; i++)
+            {
+                cout << (char)('a' + num[i]);
+            }
+            cout << "\n";
+        }
+    }
+    return (0);
+}
