@@ -71,8 +71,8 @@ ll calc(string s1, string s2)
 int main()
 {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
     ll t1, i, j;
+    cin.tie(NULL);
     cin >> t1;
     while (t1--)
     {
