@@ -8,22 +8,30 @@ using namespace std;
 
 ll fact[200005];
 
-ll powermod(ll x,ll y){
+ll power(ll x,ll y){
+    ll ans=1;
     if(y==0) return 1;
-    ll temp = powermod( x,y/2 )%mod;
-    if( y%2 ){
-        return (((temp*temp)%mod)*x%mod);
+    while(y){
+        if(y&1){
+            ans*=x%mod;
+        }
+        x=(x*x)%mod;
+        y>>=1;
     }
-    return (temp*temp)%mod;
+    return ans%mod;
 }
 
 ll power(ll x,ll y){
+    ll ans=1;
     if(y==0) return 1;
-    ll temp = power( x,y/2 );
-    if( y%2 ){
-        return (((temp*temp))*x);
+    while(y){
+        if(y&1){
+            ans*=x;
+        }
+        x*=x;
+        y>>=1;
     }
-    return (temp*temp);
+    return ans;
 }
 
 int gcd (int a, int b) {
