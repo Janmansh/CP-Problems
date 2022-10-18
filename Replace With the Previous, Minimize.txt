@@ -57,8 +57,9 @@ int main()
     while (t1--)
     {
         ll n, k;
-        cin >> n >> k;
         string s;
+        cin >> n >> k;
+        
         cin >> s;
         vector<ll> num(n);
         map<ll, ll> m1;
