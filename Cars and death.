@@ -1,0 +1,7 @@
+You find yourself in front of the grim reaper, but being the kind guy he is he decides to spare your soul on one condition,
+COMPLETE HIS CHALLENGE! He gives you an array of track and its length and a magical car which can run at any constant integral speed you want but the car
+stops after completing one track for half the time it took to complete this track to rest its engine. If you can finish the tracks in the the
+nick of time, then you will be spared.Find that max speed to clear all the tracks.
+
+1<=tracks.length<=1e6
+1e-9<=tracks[i]<=109
