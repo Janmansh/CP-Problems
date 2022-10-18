@@ -1,0 +1,116 @@
+Detective Task
+
+Polycarp bought a new expensive painting and decided to show it to his n friends. He hung it in his room. n of his friends entered and exited there one by one. At one moment there was no more than one person in the room. In other words, the first friend entered and left first, then the second, and so on.
+
+It is known that at the beginning (before visiting friends) a picture hung in the room. At the end (after the n-th friend) it turned out that it disappeared. At what exact moment it disappeared — there is no information.
+
+Polycarp asked his friends one by one. He asked each one if there was a picture when he entered the room. Each friend answered one of three:
+
+no (response encoded with 0);
+yes (response encoded as 1);
+can't remember (response is encoded with ?).
+Everyone except the thief either doesn't remember or told the truth. The thief can say anything (any of the three options).
+
+Polycarp cannot understand who the thief is. He asks you to find out the number of those who can be considered a thief according to the answers.
+
+Input
+The first number t (1≤t≤104) — the number of test cases in the test.
+
+The following is a description of test cases.
+
+The first line of each test case contains one string s (length does not exceed 2⋅105) — a description of the friends' answers, where si indicates the answer of the i-th friend. Each character in the string is either 0 or 1 or ?.
+
+The given regularity is described in the actual situation. In particular, on the basis of answers, at least one friend can be suspected of stealing a painting.
+
+It is guaranteed that the sum of string lengths over the entire input data set does not exceed 2⋅105.
+
+
+Output
+Output one positive (strictly more zero) number – the number of people who could steal the picture based on the data shown.
+
+input : 
+8
+0
+1
+1110000
+?????
+1?1??0?0
+0?0???
+??11
+??0?? 
+
+output : 
+
+1
+1
+2
+5
+4
+1
+1
+3
+
+Solution : 
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define P 1000000007
+#define inf 1e18
+#define ld long double
+#define N 400005
+ll num(vector<ll> &pref, ll l, ll r)
+{
+    if (min(l, r) < 0 || max(l, r) > pref.size())
+        return 0;
+    if (l == 0)
+        return pref[r];
+    return pref[r] - pref[l - 1];
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    ll t1, i, j;
+    cin >> t1;
+    while (t1--)
+    {
+        string s;
+        cin >> s;
+        ll n = s.length();
+        if (n == 1)
+            cout << "1\n";
+        else
+        {
+            vector<ll> one(n, 0), zero(n, 0), ques(n, 0);
+            if (s[0] == '1')
+                one[0] = 1;
+            if (s[0] == '0')
+                zero[0] = 1;
+            if (s[0] == '?')
+                ques[0] = 1;
+
+            for (int i = 1; i < n; i++)
+            {
+                one[i] = one[i - 1];
+                zero[i] = zero[i - 1];
+                ques[i] = ques[i - 1];
+                if (s[i] == '1')
+                    one[i]++;
+                else if (s[i] == '0')
+                    zero[i]++;
+                else
+                    ques[i]++;
+            }
+            ll ans = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (num(zero, 0, i - 1) == 0 && num(one, i + 1, n - 1) == 0)
+                    ans++;
+            }
+
+            cout << ans << "\n";
+        }
+    }
+    return (0);
+}
